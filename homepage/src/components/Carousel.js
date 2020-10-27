@@ -2,17 +2,26 @@ import React from 'react'
 import './C.sass'
 
 function Carousel() {
-  const opacity = {
-    opacity: 0,
-  }
-  const opacity1 = {
-    opacity: 1,
-  }
   return (
     <>
-      <div className="gallery-picture-first" style={opacity1}></div>
-      <div className="gallery-picture-second" style={opacity}></div>
-      <div className="gallery-picture-third" style={opacity}></div>
+      <div className="gallery-picture-first">
+        <img src="images/1-1.png" alt="" />
+      </div>
+      {/* <div className="gallery-picture-second">
+        <img src="/images/3.jpg" alt="" />
+      </div> */}
+
+      {/* {setInterval(() => {
+        document.getElementsByClassName(
+          'gallery-picture-first'
+        ).style.opacity = 1
+      }, 10000)}
+
+      {setInterval(() => {
+        document.getElementsByClassName(
+          'gallery-picture-second'
+        ).style.opacity = 1
+      }, 10000)} */}
     </>
   )
 }
