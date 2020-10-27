@@ -5,6 +5,8 @@ import './Navbar.sass'
 function Navebar() {
   const [click, setClick] = useState(false)
 
+  const handleClick = () => setClick(!click)
+
   const closeMobileMenu = () => setClick(false)
   return (
     <>
@@ -39,17 +41,26 @@ function Navebar() {
             </Link>
           </li>
 
-          <li className="nav-item">
-            <Link to="/member" className="nav-links" onClick={closeMobileMenu}>
+          <li className="nav-icon member">
+            <Link to="/member" onClick={closeMobileMenu}>
               <img src="/images/member.svg" alt="圖片遺失" />
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/cart" className="nav-links" onClick={closeMobileMenu}>
+          <li className="nav-icon cart">
+            <Link to="/cart" onClick={closeMobileMenu}>
               <img src="/images/購物車.svg" alt="圖片遺失" />
             </Link>
           </li>
+          <li className="nav-icon cart1">
+            <Link to="/cart" onClick={closeMobileMenu}>
+              <img src="/images/購物車1.svg" alt="圖片遺失" />
+            </Link>
+          </li>
         </ul>
+
+        <div className="menu-icon" onClick={handleClick}>
+          <i class={click ? 'fas fa-bars' : 'fas fa-times'} />
+        </div>
       </nav>
     </>
   )
