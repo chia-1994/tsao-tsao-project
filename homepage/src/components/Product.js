@@ -49,14 +49,18 @@ function Product() {
     <>
       {product.map((value, index) => {
         return (
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={value.picture} />
-            <Card.Body>
-              <Card.Title>{value.name}</Card.Title>
-              <Card.Text>{value.price}</Card.Text>
-              <Button variant="primary">BUY</Button>
-            </Card.Body>
-          </Card>
+          <Col xs={6} md={3}>
+            <Card>
+              <img variant="top" src={value.picture} alt="" />
+              <div>
+                <h5>{value.name}</h5>
+                <p>{value.price}</p>
+                <Button variant="primary" style={{ color: '#ffffff' }}>
+                  BUY
+                </Button>
+              </div>
+            </Card>
+          </Col>
         )
       })}
     </>
@@ -67,7 +71,9 @@ function Product() {
         <div className="title">
           <img src="/images/title-product.png" alt="" />
         </div>
-        <div>{display}</div>
+        <Container>
+          <Row>{display}</Row>
+        </Container>
       </div>
     </>
   )
