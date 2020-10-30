@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react'
 import './Product.sass'
 import { Container, Row, Col, Button, Card } from 'react-bootstrap'
@@ -61,13 +62,22 @@ function Product() {
       })}
     </>
   )
+=======
+import React from 'react'
+import './Product.sass'
+
+function Product() {
+>>>>>>> 1c407610771bec1b400e685664f086587e6e99ed
   return (
     <>
       <div className="product">
         <div className="title">
           <img src="/images/title-product.png" alt="" />
         </div>
+<<<<<<< HEAD
         <div>{display}</div>
+=======
+>>>>>>> 1c407610771bec1b400e685664f086587e6e99ed
       </div>
     </>
   )
