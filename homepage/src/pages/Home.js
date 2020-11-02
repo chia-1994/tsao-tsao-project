@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import Carousel from '../components/Carousel'
-import About from '../components/About'
-import Product from '../components/Product'
-import Activity from '../components/Activity'
+import Carousel from '../components/homepage/Carousel'
+import About from '../components/homepage/About'
+import Product from '../components/homepage/Product'
+import Activity from '../components/homepage/Activity'
+import Footer from '../components/Footer'
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <About />
       <Product />
       <Activity />
+      <Footer />
     </>
   )
 }

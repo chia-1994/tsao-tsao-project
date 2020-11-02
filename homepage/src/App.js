@@ -11,6 +11,12 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
+          {/* <Route path="/Product_list">
+            <Product_list />
+          </Route>
+          <Route path="/Shop_list">
+            <Shop_list />
+          </Route> */}
         </Switch>
       </Router>
     </>
