@@ -2,7 +2,9 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 import Navbar from './components/Navebar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
+import Product from './pages/Product'
 
 function App() {
   return (
@@ -11,13 +13,9 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
-          {/* <Route path="/Product_list">
-            <Product_list />
-          </Route>
-          <Route path="/Shop_list">
-            <Shop_list />
-          </Route> */}
+          <Route path="/product" component={Product}></Route>
         </Switch>
+        <Footer />
       </Router>
     </>
   )
