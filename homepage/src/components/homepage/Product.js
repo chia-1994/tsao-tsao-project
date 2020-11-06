@@ -9,7 +9,7 @@ function Product() {
     // 開啟載入的指示圖示
     setDataLoading(true)
 
-    const url = 'http://localhost:3030/'
+    const url = 'http://localhost:3000/'
 
     const request = new Request(url, {
       method: 'GET',
