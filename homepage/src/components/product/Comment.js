@@ -8,14 +8,14 @@ function Comment() {
       <div className="main"></div>
       <Container>
         <Row>
-          <div class="comment">
+          <div className="comment">
             <h5>顧客評論</h5>
             <div className="total-reviews">
-              <div class="total-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+              <div className="total-rating">
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
                 <i class="fas fa-star"></i>
               </div>
               <div className="total-score">
@@ -26,63 +26,67 @@ function Comment() {
               </div>
 
               <div className="stars">
-                <div class="five">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                <div className="five">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
                 </div>
-                <div class="four">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
+                <div className="four">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="far fa-star"></i>
                 </div>
-                <div class="three">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
+                <div className="three">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
                 </div>
-                <div class="two">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
+                <div className="two">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
                 </div>
-                <div class="one">
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
+                <div className="one">
+                  <i className="fas fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
+                  <i className="far fa-star"></i>
                 </div>
               </div>
             </div>
 
             <div className="customer-review">
-              <div class="porfile">
-                <div class="photo"></div>
-                <div class="name">
-                  馬林
-                  <div class="rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
+              <div className="porfile">
+                <div className="photo"></div>
+                <div className="name">馬林</div>
+                <div className="rating">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
                 </div>
               </div>
-              <Col xs={6} md={3}>
-                <div class="comment-content">
-                  <p>評論文字</p>
+              <Col xs={12} md={12}>
+                <div className="comment-content">
+                  <h6>評論標題</h6>
+                  <p>
+                    評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字
+                    評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字評論文字
+                  </p>
 
-                  <div class="div">2020/10/22</div>
+                  <div className="comment-time">
+                    <p>2020/10/22</p>
+                  </div>
                 </div>
               </Col>
             </div>

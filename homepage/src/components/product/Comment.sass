@@ -9,13 +9,14 @@ $colorButton: #95C375
     height: 700px
 .comment
     width: 100%
-
+    h5
+        color: $colorTitle
 .total-reviews
     width: 100%
     border-bottom: 1px solid $colorButton
     display: flex
     color: $colorTitle
-    margin: 0 auto 3rem
+    margin: 0 auto 2rem
     position: relative
 
 .total-rating
@@ -36,11 +37,32 @@ $colorButton: #95C375
     border-left: 1px solid $colorButton
     padding-left: 1rem
     font-size: 14px
-    margin: 0 1rem 1rem 1rem
+    margin: 0 1rem 2rem 1rem
 .customer-review
-    display: flex
-.photo
-    width: 50px
-    height: 50px
-    background-color: $colorLightgreen
-    border-radius: 50%
+    width: 100%
+    .porfile
+        .photo
+            width: 50px
+            height: 50px
+            background-color: $colorLightgreen
+            border-radius: 50%
+        .name
+            color: $colorTitle
+            font-size: 18px
+        .rating
+            color: $colorButton
+            font-size: 14px
+    .comment-content
+        width: 90%
+        h6
+            color: $colorMaimgreen
+            font-size: 16px
+            font-weight: 600
+            margin-top: 1rem
+        p
+            color: $colorContent
+            font-size: 16px
+        .comment-time p
+            color: $colorContent
+            font-size: 14px
+            font-weight: 300
