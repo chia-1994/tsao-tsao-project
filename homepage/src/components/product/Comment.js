@@ -2,18 +2,21 @@ import React, { useState, useEffect } from 'react'
 import './Comment.sass'
 import { Container, Row, Col, Button, Pagination } from 'react-bootstrap'
 import Mypagination from './Mypagination'
+import moment from 'moment'
+import CommentInput from './CommentInput'
 
 function Comment() {
   const [comment, setComment] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(5)
+  const [show, setShow] = useState(false)
 
   async function getCommentFromServer() {
     // 開啟載入的指示圖示
     setDataLoading(false)
 
-    const url = 'http://localhost:3000/comment/list/api'
+    const url = 'http://localhost:3000/comment/list'
 
     const request = new Request(url, {
       method: 'GET',
@@ -53,7 +56,7 @@ function Comment() {
   const indexOfLastPost = currentPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
   const currentComment = comment.slice(indexOfFirstPost, indexOfLastPost)
-
+  //目前的頁面
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   //評論呈現
@@ -84,7 +87,7 @@ function Comment() {
                   <h6>{comment.title}</h6>
                   <p>{comment.content}</p>
                   <div className="comment-time">
-                    <p>{comment.date}</p>
+                    <p>{moment(comment.date).format('YYYY-MM-DD')}</p>
                   </div>
                 </div>
               </Col>
@@ -102,9 +105,11 @@ function Comment() {
         <Row>
           <div className="comment">
             <h5>顧客評論</h5>
-            <Button>
+            <Button className="btn" onClick={() => setShow(true)}>
               <i class="fas fa-pencil-alt"></i>撰寫產品評論
             </Button>
+            {show ? <CommentInput /> : ''}
+
             <div className="total-reviews">
               <div className="total-rating">
                 <i className="fas fa-star"></i>
@@ -163,11 +168,13 @@ function Comment() {
               {dataLoading ? loading : display}
             </div>
           </div>
-          <Mypagination
-            postsPerPage={postsPerPage}
-            totalPosts={comment.length}
-            paginate={paginate}
-          />
+          <div className="pagination-area">
+            <Mypagination
+              postsPerPage={postsPerPage}
+              totalPosts={comment.length}
+              paginate={paginate}
+            />
+          </div>
         </Row>
       </Container>
     </>
