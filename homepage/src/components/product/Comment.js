@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import './Comment.sass'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Pagination } from 'react-bootstrap'
+import Mypagination from './Mypagination'
 
 function Comment() {
   const [comment, setComment] = useState([])
   const [dataLoading, setDataLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage] = useState(5)
 
   async function getCommentFromServer() {
     // 開啟載入的指示圖示
-    setDataLoading(true)
+    setDataLoading(false)
 
-    const url = 'http://localhost:3000/comment/list'
+    const url = 'http://localhost:3000/comment/list/api'
 
     const request = new Request(url, {
       method: 'GET',
@@ -31,9 +34,9 @@ function Comment() {
     getCommentFromServer()
   }, [])
 
-  // 每次total資料有改變，2秒後關閉載入指示
+  // 每次total資料有改變，0.1秒後關閉載入指示
   useEffect(() => {
-    setTimeout(() => setDataLoading(false), 2000)
+    setTimeout(() => setDataLoading(false), 100)
   }, [comment])
 
   const loading = (
@@ -45,39 +48,53 @@ function Comment() {
       </div>
     </>
   )
+
+  //設定頁碼
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentComment = comment.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+  //評論呈現
   const display = (
     <>
-      {comment.map((value, index) => {
-        return (
-          <>
-            <div className="porfile">
-              <div className="photo"></div>
-              <div className="info">
-                <div className="name">{value.name}</div>
-                <div className="rating">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                </div>
-                <div className="skintype">您的肌膚類型:{value.skin_type}</div>
-              </div>
-            </div>
-            <Col xs={12} md={12}>
-              <div className="comment-content">
-                <h6>{value.title}</h6>
-                <p>{value.content}</p>
-                <div className="comment-time">
-                  <p>{value.date}</p>
+      <div className="customer-review">
+        {currentComment.map((comment, index) => {
+          return (
+            <>
+              <div className="porfile">
+                <div className="photo"></div>
+                <div className="info">
+                  <div className="name">{comment.name}</div>
+                  <div className="rating">
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                  </div>
+                  <div className="skintype">
+                    您的肌膚類型:{comment.skin_type}
+                  </div>
                 </div>
               </div>
-            </Col>
-          </>
-        )
-      })}
+              <Col xs={12} md={12}>
+                <div className="comment-content">
+                  <h6>{comment.title}</h6>
+                  <p>{comment.content}</p>
+                  <div className="comment-time">
+                    <p>{comment.date}</p>
+                  </div>
+                </div>
+              </Col>
+            </>
+          )
+        })}
+      </div>
     </>
   )
+
   return (
     <>
       <div className="main"></div>
@@ -142,8 +159,15 @@ function Comment() {
               </div>
             </div>
 
-            <div className="customer-review">{display}</div>
+            <div className="customer-review">
+              {dataLoading ? loading : display}
+            </div>
           </div>
+          <Mypagination
+            postsPerPage={postsPerPage}
+            totalPosts={comment.length}
+            paginate={paginate}
+          />
         </Row>
       </Container>
     </>
