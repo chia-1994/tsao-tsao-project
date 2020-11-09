@@ -54,9 +54,15 @@ function Product() {
               <img variant="top" src={value.picture} alt="" />
               <div>
                 <h5>{value.name}</h5>
-                <p>{value.price}</p>
-                <Button variant="primary" style={{ color: '#ffffff' }}>
-                  BUY
+                <p>
+                  NTD<span> {value.price}</span>
+                </p>
+
+                <Button
+                  variant="primary"
+                  style={{ color: '#ffffff', fontSize: '14px' }}
+                >
+                  了解更多
                 </Button>
               </div>
             </Card>
@@ -68,7 +74,7 @@ function Product() {
   return (
     <>
       <div className="product">
-        <div className="title">
+        <div className="home-title">
           <img src="/images/title-product.png" alt="" />
         </div>
         <Container>

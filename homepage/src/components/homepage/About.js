@@ -5,7 +5,7 @@ function About() {
   return (
     <>
       <div className="about">
-        <div className="title">
+        <div className="home-title">
           <img src="/images/title-about.png" alt="" />
         </div>
 

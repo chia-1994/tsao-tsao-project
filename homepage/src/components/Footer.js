@@ -6,14 +6,14 @@ function Footer() {
   return (
     <>
       <footer>
-        <div class="footerIcons">
+        <div className="footerIcons">
           <img src="/images/footerIcon01.svg" alt="" />
           <images src="./images/footerIcon02.svg" alt="" />
           <img src="/images/footerIcon03.svg" alt="" />
           <img src="/images/footerIcon04.svg" alt="" />
           <img src="/images/footerIcon05.svg" alt="" />
         </div>
-        <div class="footerInfo">
+        <div className="footerInfo">
           <ul>
             <li>
               <Link to="">品牌故事</Link>
@@ -38,7 +38,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        {/* <div class="backGroundColor"></div> */}
+        <div className="backGroundColor"></div>
       </footer>
     </>
   )

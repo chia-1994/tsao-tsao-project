@@ -105,8 +105,8 @@ function Comment() {
         <Row>
           <div className="comment">
             <h5>顧客評論</h5>
-            <Button className="btn" onClick={() => setShow(true)}>
-              <i class="fas fa-pencil-alt"></i>撰寫產品評論
+            <Button className="btn" title="關閉" onClick={() => setShow(true)}>
+              {show ? '關閉' : '撰寫產品評論'}
             </Button>
             {show ? <CommentInput /> : ''}
 
