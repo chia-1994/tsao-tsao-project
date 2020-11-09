@@ -6,6 +6,10 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Product from './pages/Product'
+//member
+import MemberMain from './member/mcomponents/MemberMain'
+import MemberHome from './pages/MemberHome'
+import MemberRoot from './pages/MemberRoot'
 
 function App() {
   return (
@@ -17,9 +21,18 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/">
+            <Route path="/product">
               <Product />
             </Route>
+            <MemberMain>
+              <Navbar />
+              <Route exact path="/">
+                <MemberHome />
+              </Route>
+              <Route path="/memberroot">
+                <MemberRoot />
+              </Route>
+            </MemberMain>
           </Switch>
         </ScrollToTop>
         <Footer />
