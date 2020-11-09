@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import './Comment.sass'
-import { Container, Row, Col, Button, Pagination } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import Mypagination from './Mypagination'
 import moment from 'moment'
 import CommentInput from './CommentInput'
+import { Rate } from 'antd'
+import 'antd/dist/antd.css'
 
 function Comment() {
   const [comment, setComment] = useState([])
@@ -71,11 +73,11 @@ function Comment() {
                 <div className="info">
                   <div className="name">{comment.name}</div>
                   <div className="rating">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
+                    <Rate
+                      disabled
+                      value={5}
+                      style={{ color: '#95C375', fontSize: '14px' }}
+                    />
                   </div>
                   <div className="skintype">
                     您的肌膚類型:{comment.skin_type}
@@ -105,18 +107,23 @@ function Comment() {
         <Row>
           <div className="comment">
             <h5>顧客評論</h5>
-            <Button className="btn" title="關閉" onClick={() => setShow(true)}>
+            <Button
+              style={{ fontSize: '16px', color: 'white', float: 'right' }}
+              title="關閉"
+              onClick={() => setShow(true)}
+            >
               {show ? '關閉' : '撰寫產品評論'}
             </Button>
             {show ? <CommentInput /> : ''}
 
             <div className="total-reviews">
               <div className="total-rating">
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                <Rate
+                  disabled
+                  defaultValue={5}
+                  style={{ color: '#95C375', fontSize: '16px' }}
+                />
+                {/* <i class="fas fa-star"></i> */}
               </div>
               <div className="total-score">
                 <h2>5</h2>
@@ -127,39 +134,39 @@ function Comment() {
 
               <div className="stars">
                 <div className="five">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
+                  <Rate
+                    disabled
+                    defaultValue={5}
+                    style={{ color: '#95C375', fontSize: '14px' }}
+                  />
                 </div>
                 <div className="four">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="far fa-star"></i>
+                  <Rate
+                    disabled
+                    defaultValue={4}
+                    style={{ color: '#95C375', fontSize: '14px' }}
+                  />
                 </div>
                 <div className="three">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="far fa-star"></i>
-                  <i className="far fa-star"></i>
+                  <Rate
+                    disabled
+                    defaultValue={3}
+                    style={{ color: '#95C375', fontSize: '14px' }}
+                  />
                 </div>
                 <div className="two">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="far fa-star"></i>
-                  <i className="far fa-star"></i>
-                  <i className="far fa-star"></i>
+                  <Rate
+                    disabled
+                    defaultValue={2}
+                    style={{ color: '#95C375', fontSize: '14px' }}
+                  />
                 </div>
                 <div className="one">
-                  <i className="fas fa-star"></i>
-                  <i className="far fa-star"></i>
-                  <i className="far fa-star"></i>
-                  <i className="far fa-star"></i>
-                  <i className="far fa-star"></i>
+                  <Rate
+                    disabled
+                    defaultValue={1}
+                    style={{ color: '#95C375', fontSize: '14px' }}
+                  />
                 </div>
               </div>
             </div>
