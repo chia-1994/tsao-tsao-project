@@ -1,5 +1,5 @@
 * {
-  font-family: 'Noto Sans TC', sans-serif;
+  /* font-family: 'Noto Sans TC', sans-serif; */
   box-shadow: #559534 !important;
 }
 .form-control:focus {
@@ -35,7 +35,7 @@
 /* ---------------------------member_main通用--------------------------- */
 .member_main {
   width: 70%;
-  height: 100vh;
+  /* height: 100vh; */
   /* display: flex; */
   padding: 20px 0 0 0;
 }

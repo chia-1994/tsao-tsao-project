@@ -12,7 +12,8 @@ function Comment() {
   const [dataLoading, setDataLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(5)
-  const [show, setShow] = useState(false)
+  //顯示評論的填寫區
+  const [showInput, setShowInput] = useState(false)
 
   async function getCommentFromServer() {
     // 開啟載入的指示圖示
@@ -110,11 +111,11 @@ function Comment() {
             <Button
               style={{ fontSize: '16px', color: 'white', float: 'right' }}
               title="關閉"
-              onClick={() => setShow(true)}
+              onClick={() => setShowInput(!showInput)}
             >
-              {show ? '關閉' : '撰寫產品評論'}
+              {showInput ? '關閉' : '撰寫產品評論'}
             </Button>
-            {show ? <CommentInput /> : ''}
+            {showInput ? <CommentInput /> : ''}
 
             <div className="total-reviews">
               <div className="total-rating">
