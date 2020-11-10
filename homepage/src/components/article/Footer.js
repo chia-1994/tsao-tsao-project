@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-// import './../../css/.css'
+import './css/.css'
 function Footer() {
   return (
     <>
       <footer>
-        <div class="footerIcons">
+        <div className="footerIcons">
           <img src="./IMG/footerIcon01.svg" alt="" />
           <img src="./IMG/footerIcon02.svg" alt="" />
           <img src="./IMG/footerIcon03.svg" alt="" />
           <img src="./IMG/footerIcon04.svg" alt="" />
           <img src="./IMG/footerIcon05.svg" alt="" />
         </div>
-        <div class="footerInfo">
+        <div className="footerInfo">
           <ul>
             <li>
               <a href="#">品牌故事</a>
@@ -36,7 +36,7 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div class="backGroundColor"></div>
+        <div className="backGroundColor"></div>
       </footer>
     </>
   )

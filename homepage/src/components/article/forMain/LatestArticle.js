@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import '../css/.css'
+import './../css/.css'
 function LatestArticle() {
   const [article, setArticle] = useState([])
 
   async function getArticleFromServer() {
-    const url = 'http://localhost:3000/try-db-1'
+    const url = 'http://localhost:3000/article/forLatest'
 
     const request = new Request(url, {
       method: 'GET',
@@ -27,16 +27,16 @@ function LatestArticle() {
     <>
       {article.map((value, index) => {
         return (
-          <div class="latestArticle">
+          <div className="latestArticle">
             <h2>{value.title}</h2>
             <p>{value.createTime}</p>
-            <div class="forHover">
+            <div className="forHover">
               <img
                 src={'http://localhost:3001/Img/文章圖片/' + value.picName}
                 alt=""
               />
             </div>
-            <div class="contextP">
+            <div className="contextP">
               <p>{value.context}</p>
             </div>
             <button>

@@ -1,20 +1,22 @@
 import React from 'react'
 import '../App.css'
 //import Navbar from '../conponents/common/Navbar'
-import Type from '../components/article/Type'
-import Main from '../components/article/Main'
+import TypeDetail from '../components/article/TypeDetail'
+import DetailMain from './../components/article/DetailMain'
 // import Featured from '../conponents/forMain/Featured'
 //import Footer from '../conponents/common/Footer'
 
-function ArticleList() {
+function ArticleDetail() {
   return (
     <>
       <div class="hr"></div>
-      <Type />
-      <Main />
+      <TypeDetail />
+      <main>
+        <DetailMain />
+      </main>
       <div class="hr"></div>
     </>
   )
 }
 
-export default ArticleList
+export default ArticleDetail

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import './../css/.css'
-function Featured() {
+import './../css/DetailPage.css'
+function DetailPage() {
   const [article, setArticle] = useState([])
 
   async function getArticleFromServer() {
-    const url = 'http://localhost:3000/article/forFeatured'
+    const url = 'http://localhost:3000/article/forLatest'
 
     const request = new Request(url, {
       method: 'GET',
@@ -27,23 +27,24 @@ function Featured() {
     <>
       {article.map((value, index) => {
         return (
-          <div className="featuredBlock">
-            <button>
-              <a href="#">{value.sid}</a>
-            </button>
-            <h3>{value.title}</h3>
-            <div className="line"></div>
+          <div className="detailArticle">
+            <h2>{value.title}</h2>
+            <p>{value.createTime}</p>
+            <div className="forHover">
+              <img
+                src={'http://localhost:3001/Img/文章圖片/' + value.picName}
+                alt=""
+              />
+            </div>
+            <div className="contextP">
+              <p>{value.context}</p>
+            </div>
           </div>
         )
       })}
     </>
   )
-  return (
-    <>
-      <div className="featuredTop">艸艸精選文章</div>
-      {display}
-    </>
-  )
+  return <>{display}</>
 }
 
-export default Featured
+export default DetailPage
