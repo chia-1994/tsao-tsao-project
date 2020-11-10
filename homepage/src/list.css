@@ -1,0 +1,341 @@
+html {
+  font-size: 12px;
+  color: #707070;
+  font-family: 'Noto Serif TC', serif;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+header {
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+header img {
+  position: relative;
+  left: 15%;
+  width: 120px;
+  height: 46px;
+}
+
+header ul {
+  position: relative;
+  right: 15%;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+header ul li {
+  margin: 0 20px;
+  font-size: 18px;
+}
+
+header ul li a {
+  text-decoration: none;
+  color: #a8d182;
+}
+
+header ul li a img {
+  width: 29px;
+  height: 26px;
+}
+
+header ul li:last-child {
+  margin: 0;
+}
+
+main {
+  margin: 0 auto;
+  width: 80vw;
+  display: flex;
+}
+
+.article {
+  border-top: 2px solid #a8de82;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: lighter;
+  line-height: 1.5;
+
+  padding: 15px 0;
+  width: 80%;
+}
+.th-ic {
+  margin-top: 20px;
+}
+.th-ic img {
+  width: 80px;
+}
+.product {
+  width: 50vw;
+
+  position: relative;
+}
+.product-title {
+  color: #707070;
+  margin-top: 3px;
+  font-size: 25px;
+}
+.ml {
+  font-size: 12px;
+}
+.product-main img {
+  width: 45vw;
+
+  object-fit: cover;
+}
+
+.small-product {
+  height: 100;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.small-product img {
+  width: 84px;
+  height: 90px;
+  display: block;
+}
+.count {
+  display: flex;
+
+  width: 100%;
+  font-size: 15px;
+  padding-top: 15px;
+
+  vertical-align: bottom;
+}
+.sel {
+  height: 30px;
+  width: 100px;
+  border: 1px solid #ddead7;
+  margin-right: 15px;
+}
+
+.price {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.ar-title {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+ol {
+  font-size: 15px;
+}
+.add-shop {
+  display: flex;
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 14px;
+  text-align: center;
+  display: inline-block;
+
+  background-color: #ddead7;
+}
+ol {
+  padding-bottom: 10px;
+}
+.number {
+  display: inline-block;
+  background-color: #ddead7;
+}
+
+.sy {
+  font-weight: lighter;
+  letter-spacing: 5px;
+  font-size: 18px;
+}
+
+/* 右邊的部分 */
+.Introduction {
+  width: 30vw;
+  position: relative;
+  margin-top: 70px;
+}
+.title-top {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+.star-top img {
+  width: 20px;
+  padding-bottom: 5px;
+}
+/* .buy {
+  width: 200px;
+  height: 50px;
+  background-color: #9bc980;
+  border-radius: 30px;
+  display: flex;
+} */
+.buy span {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  font-size: 1.4rem;
+  align-self: center;
+}
+.container {
+  font-weight: lighter;
+  letter-spacing: 5px;
+  line-height: 1.5;
+
+  font-size: 18px;
+
+  bottom: 0px;
+}
+
+/* 規格 */
+.small-title {
+  margin-bottom: 40px;
+  margin: 40px 0px;
+
+  font-size: 18px;
+}
+.about {
+  font-size: 18px;
+}
+.under-Description {
+  width: 80vw;
+  height: 250px;
+
+  margin: 20px auto;
+}
+
+.small-p {
+  width: 22vw;
+  height: 250px;
+}
+.small-p img {
+  width: 22vw;
+  height: 100%;
+  object-fit: cover;
+}
+.under-Description {
+  display: flex;
+  margin-top: 150px;
+}
+.product-Description {
+  display: flex;
+}
+.pd {
+  width: 25vw;
+
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: lighter;
+  line-height: 1.5;
+  margin-left: 100px;
+}
+.user-mur {
+  width: 80vw;
+  border-bottom: 2px solid #ddead7;
+  margin: 0 auto;
+}
+.lev {
+  display: flex;
+  width: 30vw;
+  justify-content: center;
+  padding-bottom: 50px;
+  margin-top: 50px;
+}
+.lev img {
+  width: 15px;
+}
+
+.left {
+  border-right: 2px solid #ddead7;
+  padding-right: 50px;
+}
+.porfile {
+  display: flex;
+}
+.photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ddead7;
+}
+.name {
+  height: 30px;
+  font-size: 14px;
+  padding-left: 5px;
+  line-height: 30px;
+}
+.murmur {
+  width: 80vw;
+  padding-top: 10px;
+  margin: 0 auto;
+}
+.star img {
+  width: 15px;
+}
+.murmurff {
+  margin-top: 30px;
+  padding-bottom: 20px;
+  font-size: 16px;
+  border-bottom: 2px solid #ddead7;
+  word-spacing: 2px;
+  line-height: 1.5;
+}
+.mur-bottom {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.mur-bottom img {
+  width: 20px;
+}
+.mur-right {
+  padding-left: 15px;
+}
+.sell {
+  margin: 50px auto;
+  width: 80vw;
+  font-size: 14px;
+  line-height: 1.5;
+  word-spacing: 2px;
+  display: flex;
+}
+.sell-product {
+  width: 20vw;
+}
+
+.sell-product img {
+  height: 30vh;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.sell-title {
+  margin-top: 15px;
+  margin-bottom: -15px;
+}
+.sell-desicription {
+  margin-left: 5px;
+  margin-top: 25px;
+}

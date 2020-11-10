@@ -51,7 +51,7 @@ function CommentInput(props) {
     setTimeout(() => {
       setDataLoading(false)
       alert('儲存完成')
-      props.history.push('/')
+      // props.history.push('/')
     }, 500)
   }
   return (
@@ -129,6 +129,7 @@ function CommentInput(props) {
         <Button
           className="comment-btn"
           style={{ fontSize: '16px', color: 'white', float: 'right' }}
+          variant="success"
           onClick={() => {
             addCommentToSever()
           }}

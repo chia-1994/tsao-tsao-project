@@ -25,7 +25,11 @@ function Navebar(props) {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/product" className="nav-links" onClick={closeMobileMenu}>
+            <Link
+              to="/ShopList/"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
               商品列表
             </Link>
           </li>
