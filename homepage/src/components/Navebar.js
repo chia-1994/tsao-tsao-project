@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.sass'
+import Login from '../pages/Login'
 
-function Navebar() {
+function Navebar(props) {
   const [click, setClick] = useState(false)
+  const { setisAuth, isAuth } = props
+  const [loginModalShow, setLoginModalShow] = useState(false)
 
   const handleClick = () => setClick(!click)
 
@@ -36,13 +39,17 @@ function Navebar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/article" className="nav-links" onClick={closeMobileMenu}>
+            <Link
+              to="/articleList"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
               文章專欄
             </Link>
           </li>
 
           <li className="nav-icon member">
-            <Link to="/member" onClick={closeMobileMenu}>
+            <Link to="/memberroot" onClick={closeMobileMenu}>
               <img src="/images/member.svg" alt="圖片遺失" />
             </Link>
           </li>
@@ -56,6 +63,12 @@ function Navebar() {
               <img src="/images/購物車1.svg" alt="圖片遺失" />
             </Link>
           </li>
+          <Login
+            loginModalShow={loginModalShow}
+            setLoginModalShow={setLoginModalShow}
+            setisAuth={setisAuth}
+            isAuth={isAuth}
+          />
         </ul>
 
         <div className="menu-icon" onClick={handleClick}>

@@ -29,7 +29,7 @@ function Activity() {
                 松山文創園區 索票入場
               </h6>
             </div>
-            <Button variant="outline-primary" size="sm" className="mt-5">
+            <Button variant="outline-success" size="sm" className="mt-5">
               了解更多
             </Button>
           </Col>
@@ -48,7 +48,7 @@ function Activity() {
                 松山文創園區 索票入場
               </h6>
             </div>
-            <Button variant="outline-primary" size="sm" className="mt-5">
+            <Button variant="outline-success" size="sm" className="mt-5">
               了解更多
             </Button>
           </Col>
@@ -72,7 +72,7 @@ function Activity() {
                   淨灘活動可不是三五好友因為新奇而相約到海邊，隨手撿撿垃圾就好像在幫過於便利的生活「贖罪」。藉由親身經歷可以開始省思：「眼不見為淨」，真的淨了嗎？
                 </p>
               </div>
-              <Button variant="outline-primary" size="sm">
+              <Button variant="outline-success" size="sm">
                 繼續閱讀
               </Button>
             </Col>
@@ -84,7 +84,7 @@ function Activity() {
                   大家都知道，生活習慣與肌膚健康有著密不可分的關係。除了作息不固定、晚睡，和高油高糖飲食容易影響肌膚代謝外，清潔習慣更是長痘痘、粉刺的關鍵因素之一。
                 </p>
               </div>
-              <Button variant="outline-primary" size="sm">
+              <Button variant="outline-success" size="sm">
                 繼續閱讀
               </Button>
             </Col>
@@ -96,7 +96,7 @@ function Activity() {
                   已經有許多無塑的生活方式被大力推廣，越來越多人了解到改變便利的生活方式不代表生活品質降低。這場戰役唯一的勝算就是停止對地球資源予取予求，而是循環永續。
                 </p>
               </div>
-              <Button variant="outline-primary" size="sm">
+              <Button variant="outline-success" size="sm">
                 繼續閱讀
               </Button>
             </Col>
