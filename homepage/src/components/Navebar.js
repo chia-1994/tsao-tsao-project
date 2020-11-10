@@ -20,9 +20,9 @@ function Navebar(props) {
 
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className="nav-item">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+            {/* <Link to="/" className="nav-links" onClick={closeMobileMenu}>
               品牌故事
-            </Link>
+            </Link> */}
           </li>
           <li className="nav-item">
             <Link
@@ -35,7 +35,7 @@ function Navebar(props) {
           </li>
           <li className="nav-item">
             <Link
-              to="/activity"
+              to="/CourseList"
               className="nav-links"
               onClick={closeMobileMenu}
             >

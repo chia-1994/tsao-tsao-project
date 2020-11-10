@@ -20,6 +20,9 @@ import ShopList from './pages/ShopList'
 import ProductData from './pages/ProductData'
 import ProductAdd from './pages/ProductAdd'
 import ProductEdit from './pages/ProductEdit'
+//活動
+import CourseList from './pages/CourseList'
+import CourseDetail from './pages/CourseDetail'
 
 function App() {
   //設定登入登出的狀態
@@ -58,6 +61,12 @@ function App() {
             </Route>
             <Route path="/articleList">
               <ArticleList />
+            </Route>
+            <Route path="/CourseList">
+              <CourseList />
+            </Route>
+            <Route path="/CourseDetail/:id?">
+              <CourseDetail />
             </Route>
             <MemberMain>
               <Route path="/">
