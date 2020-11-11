@@ -23,6 +23,11 @@ import ProductEdit from './pages/ProductEdit'
 //活動
 import CourseList from './pages/CourseList'
 import CourseDetail from './pages/CourseDetail'
+//購物車
+import Cart from './pages/Cart'
+import PaymentInfo from './pages/PaymentInfo'
+import OrderCheck from './pages/OrderCheck'
+import OrderDone from './pages/OrderDone'
 
 function App() {
   //設定登入登出的狀態
@@ -35,7 +40,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar isAuth={isAuth} setisAuth={setisAuth} />
         <ScrollToTop>
           <Switch>
             <Route exact path="/">
@@ -67,6 +72,18 @@ function App() {
             </Route>
             <Route path="/CourseDetail/:id?">
               <CourseDetail />
+            </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
+            <Route path="/payment-info">
+              <PaymentInfo />
+            </Route>
+            <Route path="/order-check">
+              <OrderCheck />
+            </Route>
+            <Route path="/order-done">
+              <OrderDone />
             </Route>
             <MemberMain>
               <Route path="/">
