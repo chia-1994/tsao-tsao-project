@@ -8,10 +8,10 @@ function CommentInput(props) {
   const [dataLoading, setDataLoading] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  // const [rating, setRating] = useState('')
+  const [rating, setRating] = useState('')
   const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  //const [skin_type, setSkin] = useState('')
+  const [review, setReview] = useState('')
+  const [skin, setSkin] = useState('')
 
   const loading = (
     <>
@@ -24,8 +24,8 @@ function CommentInput(props) {
   )
 
   async function addCommentToSever() {
-    const newData = { name, email, title, content }
-
+    //const newData = { name, email, title, review }
+    const newData = { name, email, title, review }
     // 連接的伺服器資料網址
     const url = 'http://localhost:3000/comment/add'
 
@@ -85,10 +85,10 @@ function CommentInput(props) {
           <Rate
             defaultValue={1}
             style={{ color: '#95C375' }}
-            // value={rating}
-            // onChange={(event) => {
-            //   setRating(event.target.value)
-            // }}
+            value={rating}
+            onChange={(event) => {
+              setRating(event.target.value)
+            }}
           />
         </div>
         <Form.Group controlId="exampleForm.ControlInput1">
@@ -106,9 +106,9 @@ function CommentInput(props) {
           <Form.Control
             as="textarea"
             rows={3}
-            value={content}
+            value={review}
             onChange={(event) => {
-              setContent(event.target.value)
+              setReview(event.target.value)
             }}
           />
         </Form.Group>
@@ -116,10 +116,10 @@ function CommentInput(props) {
           <h6>膚質</h6>
           <Form.Control
             as="select"
-            // value={skin_type}
-            // onChange={(event) => {
-            //   setSkin(event.target.value)
-            // }}
+            value={skin}
+            onChange={(event) => {
+              setSkin(event.target.value)
+            }}
           >
             <option>油性</option>
             <option>混合肌</option>

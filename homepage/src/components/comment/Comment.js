@@ -20,7 +20,7 @@ function Comment() {
   const [selectedSkin, setSelectedSkin] = useState(0)
   const [dataLoading, setDataLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage, setPostPerPage] = useState(10)
+  const [postsPerPage, setPostPerPage] = useState(5)
   //顯示評論的填寫區
   const [showInput, setShowInput] = useState(false)
 

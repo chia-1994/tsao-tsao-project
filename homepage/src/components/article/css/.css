@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Noto Serif TC", serif;
+  font-family: 'Noto Serif TC', serif;
 }
 
 img {
@@ -558,7 +558,7 @@ main .recommend .productLink .productPrice img {
   height: 21px;
 }
 
-footer {
+/* footer {
   width: 100%;
 }
 
@@ -619,5 +619,5 @@ footer .footerInfo ul li div {
 footer .backGroundColor {
   height: 75px;
   background-color: #dce9d7;
-}
+} */
 /*# sourceMappingURL=ArticalLists.css.map */
