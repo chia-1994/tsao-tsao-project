@@ -13,6 +13,7 @@ import moment from 'moment'
 import CommentInput from './CommentInput'
 import { Rate } from 'antd'
 import 'antd/dist/antd.css'
+import CommentList from './CommentList'
 
 function Comment() {
   const [comment, setComment] = useState([])
@@ -20,7 +21,7 @@ function Comment() {
   const [selectedSkin, setSelectedSkin] = useState(0)
   const [dataLoading, setDataLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage, setPostPerPage] = useState(5)
+  const [postsPerPage, setPostPerPage] = useState(10)
   //顯示評論的填寫區
   const [showInput, setShowInput] = useState(false)
 
@@ -54,14 +55,13 @@ function Comment() {
     // setPostPerPage(data.perPage)
   }
 
-  // componenliidMount，一開始會載入資料(在元件初始化完成後)
   useEffect(() => {
     getCommentFromServer()
   }, [])
 
-  // 每次total資料有改變，0.1秒後關閉載入指示
+  // 每次total資料有改變，0.5秒後關閉載入指示
   useEffect(() => {
-    setTimeout(() => setDataLoading(false), 100)
+    setTimeout(() => setDataLoading(false), 500)
   }, [comment])
 
   const loading = (
@@ -77,56 +77,21 @@ function Comment() {
   //目前的頁面
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
-  //評論呈現
-  const display = (
-    <>
-      <div className="customer-review">
-        {displayComment.map((comment, index) => {
-          return (
-            <>
-              <div className="porfile">
-                <div className="photo"></div>
-                <div className="info">
-                  <div className="name">{comment.name}</div>
-                  <div className="rating">
-                    <Rate
-                      disabled
-                      value={comment.rating}
-                      style={{ color: '#95C375', fontSize: '14px' }}
-                    />
-                  </div>
-                  <div className="skintype">
-                    您的肌膚類型:{comment.skin_type}
-                  </div>
-                </div>
-              </div>
-              <Col xs={12} md={12}>
-                <div className="comment-content">
-                  <h6>{comment.title}</h6>
-                  <p>{comment.review}</p>
-                  <div className="comment-time">
-                    <p>{moment(comment.date).format('YYYY-MM-DD')}</p>
-                  </div>
-                </div>
-              </Col>
-            </>
-          )
-        })}
-      </div>
-    </>
-  )
-
   function onSkinChange(e) {
     setSelectedSkin(e)
-    let c = comment.filter((item) => {
-      return item.skin === e
-    })
-    //console.log(c)
-    setDisplayComment(c)
+    let selected = null
+    if (e === 0) {
+      selected = comment
+    } else {
+      selected = comment.filter((item) => {
+        return item.skin === e
+      })
+    }
+    setDisplayComment(selected)
   }
+
   return (
     <>
-      <div className="main"></div>
       <Container>
         <Row>
           <div className="comment">
@@ -139,7 +104,16 @@ function Comment() {
             >
               {showInput ? '關閉' : '撰寫產品評論'}
             </Button>
-            {showInput ? <CommentInput /> : ''}
+            {showInput ? (
+              <CommentInput
+                comment={comment}
+                setComment={setComment}
+                displayComment={displayComment}
+                setDisplayComment={setDisplayComment}
+              />
+            ) : (
+              ''
+            )}
 
             <div className="total-reviews">
               <div className="total-rating">
@@ -195,6 +169,7 @@ function Comment() {
                 </div>
               </div>
             </div>
+            {/* 選擇膚質的下拉選單 */}
             <div className="dropdown-area">
               <DropdownButton
                 id="dropdown-basic-button"
@@ -204,6 +179,14 @@ function Comment() {
                 style={{ fontSize: '16px' }}
                 // onClick={() => onSkinChange()}
               >
+                <Dropdown.Item
+                  size="sm"
+                  style={{ fontSize: '16px' }}
+                  onSelect={() => onSkinChange(0)}
+                  eventKey="0"
+                >
+                  全部
+                </Dropdown.Item>
                 <Dropdown.Item
                   size="sm"
                   style={{ fontSize: '16px' }}
@@ -229,7 +212,11 @@ function Comment() {
               </DropdownButton>
             </div>
             <div className="customer-review">
-              {dataLoading ? loading : display}
+              <CommentList
+                displayComment={displayComment}
+                setDisplayComment={setDisplayComment}
+                selectedSkin={selectedSkin}
+              />
             </div>
           </div>
           <div className="pagination-area">

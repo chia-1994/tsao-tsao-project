@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.sass'
 import Login from '../pages/Login'
+import { CSSTransition } from 'react-transition-group'
+import DropdownMenu from './DropdownMenu'
 
 function Navebar(props) {
   const [click, setClick] = useState(false)
@@ -55,6 +57,7 @@ function Navebar(props) {
           <li className="nav-icon member">
             <Link to="/memberroot" onClick={closeMobileMenu}>
               <img src="/images/member.svg" alt="圖片遺失" />
+              <DropdownMenu></DropdownMenu>
             </Link>
           </li>
           <li className="nav-icon cart">
