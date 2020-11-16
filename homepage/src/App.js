@@ -42,12 +42,12 @@ function App() {
               <Home />
             </Route>
             <Route path="/product">
-              <Product />
+              <Product isAuth={isAuth} setisAuth={setisAuth} />
             </Route>
             <Route path="/ProductList">
               <ProductList />
             </Route>
-            <Route path="/ShopList/:category?/:sid?/">
+            <Route path="/ShopList/:category?/:sid?/ ">
               <ShopList />
             </Route>
             <Route path="/ProductData/:sid?">

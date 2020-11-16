@@ -4,12 +4,13 @@ import About from '../components/homepage/About'
 import Product from '../components/homepage/Product'
 import Activity from '../components/homepage/Activity'
 
-function Home() {
+function Home(props) {
+  const { isAuth } = props
   return (
     <>
       <MyCarousel />
       <About />
-      <Product />
+      <Product isAuth={isAuth} />
       <Activity />
     </>
   )

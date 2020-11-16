@@ -6,8 +6,13 @@ import { Button, Form } from 'react-bootstrap'
 import ReactStars from 'react-rating-stars-component'
 
 function CommentInput(props) {
-  const { comment, setComment, displayComment, setDisplayComment } = props
-  const [dataLoading, setDataLoading] = useState(false)
+  const {
+    comment,
+    setComment,
+    displayComment,
+    setDisplayComment,
+    addCommentToSever,
+  } = props
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [rating, setRating] = useState('')
@@ -15,46 +20,46 @@ function CommentInput(props) {
   const [review, setReview] = useState('')
   const [skin, setSkin] = useState('')
 
-  const loading = (
-    <>
-      <div className="d-flex justify-content-center">
-        <div className="spinner-border" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
-    </>
-  )
-  async function addCommentToSever() {
-    //const newData = { name, email, title, review }
-    const newData = { name, email, skin, rating, title, review }
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/comment/add'
-
-    // 設定為json格式
-    const request = new Request(url, {
-      method: 'POST',
-      body: JSON.stringify(newData),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    })
-
-    console.log(JSON.stringify(newData))
-
-    const response = await fetch(request)
-    const data = await response.json()
-
-    console.log('伺服器回傳的json資料', data)
-
-    //警示
-    setTimeout(() => {
-      setDataLoading(false)
-      alert('已新增評論')
-      // props.history.push('/product')
-    }, 500)
+  const ratingStar = {
+    size: 30,
+    count: 5,
+    isHalf: false,
+    value: 4,
+    color: '#ddead7',
+    activeColor: '#95C375',
+    onChange: (newRating) => {
+      setRating(newRating)
+      console.log(`rating value is ${newRating}`)
+    },
   }
 
+  const addComment = () => {
+    if (review !== '') {
+      console.log(rating)
+      // 建立一個新的Comment項目
+      const newItem = {
+        // id: +new Date(),
+        name: name,
+        title: title,
+        review: review,
+        skin: skin,
+        rating: rating,
+      }
+
+      // const newComment = [newItem, ...displayComment]
+      // setDisplayComment(newComment)
+
+      // 清空輸入框
+      setName('')
+      setEmail('')
+      setTitle('')
+      setReview('')
+      setSkin('')
+      setRating(3)
+      //儲存進資料庫
+      props.addCommentToSever(newItem)
+    }
+  }
   return (
     <>
       <Form className="form">
@@ -79,22 +84,7 @@ function CommentInput(props) {
         </div>
         <div className="rating">
           <h6>評分</h6>
-          {/* <Rate
-            defaultValue={1}
-            style={{ color: '#95C375' }}
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-          /> */}
-          {/* <ReactStars
-            count={5}
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-            size={24}
-            emptyIcon={<i className="far fa-star"></i>}
-            halfIcon={<i className="fa fa-star-half-alt"></i>}
-            fullIcon={<i className="fa fa-star"></i>}
-            activeColor="#ffd700"
-          /> */}
+          <ReactStars {...ratingStar} />
         </div>
         <Form.Group controlId="exampleForm.ControlInput1">
           <h6>標題</h6>
@@ -118,7 +108,9 @@ function CommentInput(props) {
           <Form.Control
             as="select"
             value={skin}
-            onChange={(e) => setSkin(e.target.value)}
+            onChange={(e) => {
+              setSkin(e.target.value)
+            }}
           >
             <option value="">請選擇</option>
             <option value="1">油性</option>
@@ -130,30 +122,7 @@ function CommentInput(props) {
           className="comment-btn"
           style={{ fontSize: '16px', color: 'white', float: 'right' }}
           variant="success"
-          onClick={(event) => {
-            if (review !== '') {
-              // 建立一個新的Comment項目
-              const newItem = {
-                // id: +new Date(),
-                name: name,
-                title: title,
-                review: review,
-                skin: skin,
-              }
-
-              const newComment = [newItem, ...displayComment]
-              setDisplayComment(newComment)
-
-              // 清空輸入框
-              setName('')
-              setEmail('')
-              setTitle('')
-              setReview('')
-              setSkin('')
-              //儲存進資料庫
-              addCommentToSever()
-            }
-          }}
+          onClick={() => addComment()}
         >
           送出評論
         </Button>

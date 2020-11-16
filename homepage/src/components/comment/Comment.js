@@ -14,22 +14,46 @@ import CommentInput from './CommentInput'
 import { Rate } from 'antd'
 import 'antd/dist/antd.css'
 import CommentList from './CommentList'
+import { Pagination } from 'react-bootstrap'
+import { transformSkinType } from '../../utils'
+import ReactStars from 'react-rating-stars-component'
+import reactStars from 'react-rating-stars-component'
 
-function Comment() {
+function Comment(props) {
   const [comment, setComment] = useState([])
   const [displayComment, setDisplayComment] = useState([])
   const [selectedSkin, setSelectedSkin] = useState(0)
   const [dataLoading, setDataLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage, setPostPerPage] = useState(10)
+  const [postsPerPage, setPostPerPage] = useState(5)
+  const [totalComment, setTotalComment] = useState([])
+  const [avgRating, setAvgRating] = useState(0)
+  const { isAuth } = props
   //顯示評論的填寫區
   const [showInput, setShowInput] = useState(false)
+  //按讚
+  const [like, setLike] = useState(0)
 
+  const apiURL = 'http://localhost:3000/comment/'
+
+  async function getRating() {
+    const ratingURL = `${apiURL}/getRating`
+    const request = new Request(ratingURL, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    setAvgRating(data.avgRating)
+  }
   async function getCommentFromServer() {
     // 開啟載入的指示圖示
     setDataLoading(true)
 
-    const url = 'http://localhost:3000/comment/list'
+    const url = 'http://localhost:3000/comment/formatList'
 
     const request = new Request(url, {
       method: 'GET',
@@ -41,28 +65,25 @@ function Comment() {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log(data)
-    setComment(data)
-    setDisplayComment(data)
-    setDataLoading(false)
-    //設定頁碼
-    // const indexOfLastPost = currentPage * postsPerPage
-    // const indexOfFirstPost = indexOfLastPost - postsPerPage
-    // let a = comment.slice(0, 10)
-
-    // setDisplayComment(a)
-
-    // setPostPerPage(data.perPage)
+    setComment(data.rows)
+    setDisplayComment(data.rows)
+    // setTotalComment(data.rows.length)
+    let skinFilteredComment = fiterSkin(data.rows, selectedSkin)
+    setPaging(skinFilteredComment)
+    // setDataLoading(false)
   }
 
   useEffect(() => {
     getCommentFromServer()
   }, [])
+  useEffect(() => {
+    getRating()
+  }, [])
 
   // 每次total資料有改變，0.5秒後關閉載入指示
   useEffect(() => {
     setTimeout(() => setDataLoading(false), 500)
-  }, [comment])
+  }, [displayComment])
 
   const loading = (
     <>
@@ -73,21 +94,133 @@ function Comment() {
       </div>
     </>
   )
+  const paginate = (pageNumber) => {
+    console.log(pageNumber)
+    setCurrentPage(Number(pageNumber))
+    let skinFilteredComment = fiterSkin(comment, selectedSkin)
+    setPaging(skinFilteredComment)
+  }
+  // //設定目前的頁面
+  // const currentComments = displayComment.slice(
+  //   (currentPage - 1) * postsPerPage,
+  //   postsPerPage
+  // )
+  function setPaging(skinFilterdComment) {
+    /**
+    1. 拿到所有的comment (comment)
+    2. 整理資料
+      2-1. 看一頁需要幾筆data (postsPerPage)
+      2-2. 看他filter條件 (selectedSkin)
+      2-3. 看現在所選的是哪一頁 (currentPage)
+    3. 將filter後的commnet 塞到display comment (displayComment)
+    **/
 
-  //目前的頁面
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+    const indexOfLastPost = currentPage * postsPerPage
+    const indexOfFirstPost = indexOfLastPost - postsPerPage
+    const currentComments = skinFilterdComment.slice(
+      indexOfFirstPost,
+      indexOfLastPost
+    )
+    setDisplayComment(currentComments)
+    setTotalComment(skinFilterdComment.length)
+  }
 
-  function onSkinChange(e) {
-    setSelectedSkin(e)
-    let selected = null
-    if (e === 0) {
-      selected = comment
+  function onSkinChange(skinId) {
+    setSelectedSkin(skinId)
+    let selected = fiterSkin(comment, skinId)
+    //setDisplayComment(selected)
+    setPaging(selected)
+  }
+
+  function fiterSkin(comment, skinId) {
+    let selectedSkinComment = []
+
+    if (Number(skinId) === 0) {
+      selectedSkinComment = comment
     } else {
-      selected = comment.filter((item) => {
-        return item.skin === e
+      selectedSkinComment = comment.filter((item) => {
+        return item.skin === Number(skinId)
       })
     }
-    setDisplayComment(selected)
+    return selectedSkinComment
+  }
+
+  async function addCommentToSever(formData) {
+    //props.setLoading(true)
+    //const newData = { name, email, title, review }
+    console.log('FORM', formData)
+    const newData = {
+      name: formData.name,
+      email: formData.email || '',
+      skin: formData.skin,
+      rating: formData.rating,
+      title: formData.title,
+      review: formData.review,
+    }
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/comment/add'
+
+    // 設定為json格式
+    const request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify(newData),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    console.log(JSON.stringify(newData))
+
+    const response = await fetch(request)
+    const data = await response.json()
+
+    console.log('伺服器回傳的json資料', data)
+    getCommentFromServer()
+    //警示
+    setTimeout(() => {
+      setLoading(false)
+      // setDataLoading(false)
+      alert('已新增評論')
+      // props.history.push('/product')
+    }, 500)
+  }
+
+  async function deleteCommentFromServer(deleteCommentId) {
+    // 開啟載入指示
+    // setDataLoading(true)
+
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/comment/del/' + deleteCommentId
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'DELETE',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(data)
+    alert('已刪除')
+    getCommentFromServer()
+
+    // 設定資料
+    // if (!displayComment.sid) {
+    //   const newComment = displayComment.filter((item, index) => {
+    //     return item.sid !== sid
+    //   })
+
+    //   alert('已刪除')
+    // }
+  }
+
+  function setLoading(isLoading) {
+    console.log('change', isLoading)
+    setDataLoading(isLoading)
   }
 
   return (
@@ -110,6 +243,8 @@ function Comment() {
                 setComment={setComment}
                 displayComment={displayComment}
                 setDisplayComment={setDisplayComment}
+                setLoading={setLoading}
+                addCommentToSever={addCommentToSever}
               />
             ) : (
               ''
@@ -117,17 +252,20 @@ function Comment() {
 
             <div className="total-reviews">
               <div className="total-rating">
+                {/* <ReactStars size={30} value={Number(avgRating)} edit={false} /> */}
                 <Rate
                   disabled
                   defaultValue={5}
                   style={{ color: '#95C375', fontSize: '16px' }}
+                  value={avgRating}
+                  allowHalf
                 />
                 {/* <i class="fas fa-star"></i> */}
               </div>
               <div className="total-score">
-                <h2>5</h2>
+                <h2>{avgRating.toFixed(2)}</h2>
                 <div className="reviews">
-                  <h6>36 評論</h6>
+                  <h6>{totalComment}評論</h6>
                 </div>
               </div>
 
@@ -173,39 +311,42 @@ function Comment() {
             <div className="dropdown-area">
               <DropdownButton
                 id="dropdown-basic-button"
-                title="選擇膚質"
+                title={transformSkinType(selectedSkin)}
                 variant="outline-success"
                 size="sm"
                 style={{ fontSize: '16px' }}
-                // onClick={() => onSkinChange()}
               >
                 <Dropdown.Item
                   size="sm"
                   style={{ fontSize: '16px' }}
-                  onSelect={() => onSkinChange(0)}
+                  onSelect={(e) => onSkinChange(e)}
                   eventKey="0"
+                  value="0"
                 >
                   全部
                 </Dropdown.Item>
                 <Dropdown.Item
                   size="sm"
                   style={{ fontSize: '16px' }}
-                  onSelect={() => onSkinChange(1)}
+                  onSelect={(e) => onSkinChange(e)}
                   eventKey="1"
+                  value="1"
                 >
                   油性
                 </Dropdown.Item>
                 <Dropdown.Item
                   size="sm"
                   style={{ fontSize: '16px' }}
-                  onSelect={() => onSkinChange(2)}
+                  onSelect={(e) => onSkinChange(e)}
+                  eventKey="2"
                 >
                   混合肌
                 </Dropdown.Item>
                 <Dropdown.Item
                   size="sm"
                   style={{ fontSize: '16px' }}
-                  onSelect={() => onSkinChange(3)}
+                  onSelect={(e) => onSkinChange(e)}
+                  eventKey="3"
                 >
                   乾性
                 </Dropdown.Item>
@@ -213,17 +354,23 @@ function Comment() {
             </div>
             <div className="customer-review">
               <CommentList
+                // displayComment={currentComments}
                 displayComment={displayComment}
-                setDisplayComment={setDisplayComment}
                 selectedSkin={selectedSkin}
+                deleteCommentFromServer={deleteCommentFromServer}
+                isAuth={isAuth}
+                // setisAuth={setisAuth}
               />
             </div>
           </div>
           <div className="pagination-area">
+            {/* <Pagination>{items}</Pagination> */}
             <Mypagination
               postsPerPage={postsPerPage}
-              totalPosts={comment.length}
+              totalComment={totalComment}
               paginate={paginate}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
             />
           </div>
         </Row>

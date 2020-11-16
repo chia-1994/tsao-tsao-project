@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Comment from '../components/comment/Comment'
 
-function Home() {
+function Home(props) {
+  const { isAuth } = props
   return (
     <>
-      <Comment />
+      <Comment isAuth={isAuth} />
     </>
   )
 }
