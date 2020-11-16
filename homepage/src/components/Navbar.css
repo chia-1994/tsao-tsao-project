@@ -81,6 +81,9 @@
 .menu-icon {
   display: none;
 }
+.nav-Icons {
+  margin-top: 1rem;
+}
 
 @media screen and (max-width: 960px) {
   .NavbarItems {

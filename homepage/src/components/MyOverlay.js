@@ -26,6 +26,7 @@ function MyOverlay(props) {
           color: '#a8d182',
           marginRight: '10px',
           marginLeft: '10px',
+          paddingTop: '7px',
         }}
         onClick={handleClick}
       ></i>
