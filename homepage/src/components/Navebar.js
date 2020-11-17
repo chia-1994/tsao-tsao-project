@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 // import { Button } from './Button'
 import { Link } from 'react-router-dom'
-import './Navbar.css'
-import Dropdown from './Dropdown'
-import MyOverlay from './MyOverlay'
+import './Nav/Navbar.css'
+import Dropdown from './Nav/Dropdown'
+import MyOverlay from './Nav/MyOverlay'
 
 function Navbar(props) {
   const [click, setClick] = useState(false)
