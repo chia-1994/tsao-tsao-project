@@ -16,7 +16,7 @@ function Footer() {
         <div className="footerInfo">
           <ul>
             <li>
-              <Link to="">品牌故事</Link>
+              <Link to="/">首頁</Link>
             </li>
             <li>
               <div></div>

@@ -45,12 +45,12 @@ function CommentList(props) {
                       style={{ color: '#95C375', fontSize: '14px' }}
                     />
                   </div>
-                  <div className="skintype">
-                    您的肌膚類型:{transformSkinType(item.skin)}
-                  </div>
                 </div>
               </div>
               <Col xs={12} md={12}>
+                <div className="skintype">
+                  您的肌膚類型:{transformSkinType(item.skin)}
+                </div>
                 <div className="comment-content">
                   <h6>{item.title}</h6>
                   <p>{item.review}</p>

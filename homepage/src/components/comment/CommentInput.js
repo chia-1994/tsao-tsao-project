@@ -12,6 +12,7 @@ function CommentInput(props) {
     displayComment,
     setDisplayComment,
     addCommentToSever,
+    setShowInput,
   } = props
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -56,6 +57,7 @@ function CommentInput(props) {
       setReview('')
       setSkin('')
       setRating(3)
+      setShowInput(false)
       //儲存進資料庫
       props.addCommentToSever(newItem)
     }

@@ -27,6 +27,12 @@ function Comment(props) {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostPerPage] = useState(5)
   const [totalComment, setTotalComment] = useState([])
+  //星星的計算
+  const [oneStar, setOneStar] = useState(0)
+  const [twoStar, setTwoStar] = useState(0)
+  const [threeStar, setThreeStar] = useState(0)
+  const [fourStar, setFourStar] = useState(0)
+  const [fiveStar, setFiveStar] = useState(0)
   const [avgRating, setAvgRating] = useState(0)
   const { isAuth } = props
   //顯示評論的填寫區
@@ -48,6 +54,11 @@ function Comment(props) {
     const response = await fetch(request)
     const data = await response.json()
     setAvgRating(data.avgRating)
+    setOneStar(data.oneStar)
+    setTwoStar(data.twoStars)
+    setThreeStar(data.threeStars)
+    setFourStar(data.fourStars)
+    setFiveStar(data.fiveStars)
   }
   async function getCommentFromServer() {
     // 開啟載入的指示圖示
@@ -245,6 +256,7 @@ function Comment(props) {
                 setDisplayComment={setDisplayComment}
                 setLoading={setLoading}
                 addCommentToSever={addCommentToSever}
+                setShowInput={setShowInput}
               />
             ) : (
               ''
@@ -276,6 +288,7 @@ function Comment(props) {
                     defaultValue={5}
                     style={{ color: '#95C375', fontSize: '14px' }}
                   />
+                  <span className="countingStar">{fiveStar}</span>
                 </div>
                 <div className="four">
                   <Rate
@@ -283,6 +296,7 @@ function Comment(props) {
                     defaultValue={4}
                     style={{ color: '#95C375', fontSize: '14px' }}
                   />
+                  <span className="countingStar">{fourStar}</span>
                 </div>
                 <div className="three">
                   <Rate
@@ -290,6 +304,7 @@ function Comment(props) {
                     defaultValue={3}
                     style={{ color: '#95C375', fontSize: '14px' }}
                   />
+                  <span className="countingStar">{threeStar}</span>
                 </div>
                 <div className="two">
                   <Rate
@@ -297,6 +312,7 @@ function Comment(props) {
                     defaultValue={2}
                     style={{ color: '#95C375', fontSize: '14px' }}
                   />
+                  <span className="countingStar">{twoStar}</span>
                 </div>
                 <div className="one">
                   <Rate
@@ -304,6 +320,7 @@ function Comment(props) {
                     defaultValue={1}
                     style={{ color: '#95C375', fontSize: '14px' }}
                   />
+                  <span className="countingStar">{oneStar}</span>
                 </div>
               </div>
             </div>

@@ -81,7 +81,7 @@ function Counter(props) {
 
   const display = (
     <>
-      <div onClick={() => setTotal(total + 1)}>
+      <div onClick={() => setTotal(total + 1)} className="commentlike">
         <TiHeartFullOutline style={{ color: '#95C375' }} /> <span>{total}</span>
       </div>
     </>
