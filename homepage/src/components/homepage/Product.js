@@ -49,7 +49,7 @@ function Product() {
     <>
       {product.map((value, index) => {
         return (
-          <Col xs={6} md={3}>
+          <Col className="homepageCard" xs={6} md={3}>
             <Card style={{ border: 'none' }}>
               <img variant="top" src={value.picture} alt="" />
               <div>
@@ -78,7 +78,7 @@ function Product() {
   )
   return (
     <>
-      <div className="product">
+      <div className="homepage-product">
         <div className="home-title">
           <img src="/images/title-product.png" alt="" />
         </div>

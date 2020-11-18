@@ -13,11 +13,14 @@ function Activity() {
           <img src="/images/leaf2.png" alt="" />
         </div> */}
         <div className="activity-content">
+          <div className="photo2 img-2">
+            <img src="/images/course-5.jpg" alt="" />
+          </div>
           <div className="home-photo">
             <img src="/images/course-3.jpg" alt="" />
           </div>
-          <Col xs={6} md={4}>
-            <div className="home-card">
+          <Col xs={6} md={3} className="home-card">
+            <div className="home-card-info">
               <h6>【講座】</h6>
               <h3>超親民環保攻略</h3>
               <p>
@@ -29,12 +32,16 @@ function Activity() {
                 松山文創園區 索票入場
               </h6>
             </div>
-            <Button variant="outline-success" size="sm" className="mt-5">
+            <Button
+              variant="outline-success"
+              size="sm"
+              style={{ marginLeft: '70%' }}
+            >
               了解更多
             </Button>
           </Col>
         </div>
-        <div className="activity-content-right">
+        {/* <div className="activity-content-right">
           <Col xs={6} md={3}>
             <div className="home-card">
               <h6>【講座】</h6>
@@ -55,7 +62,7 @@ function Activity() {
           <div className="photo2 img-2">
             <img src="/images/course-5.jpg" alt="" />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="home-article">
