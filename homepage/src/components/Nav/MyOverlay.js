@@ -38,7 +38,7 @@ function MyOverlay(props) {
         // container={ref.current}
         containerPadding={20}
       >
-        <Popover id="popover-contained">
+        <Popover id="popover-contained" style={{ padding: '0.5rem' }}>
           {/* <Popover.Title as="h3"> */}
           <Login
             loginModalShow={loginModalShow}
@@ -46,10 +46,10 @@ function MyOverlay(props) {
             setisAuth={setisAuth}
             isAuth={isAuth}
           />
-          {/* </Popover.Title> */}
-          {/* <Popover.Content>
-            <strong>Holy guacamole!</strong> Check this info.
-          </Popover.Content> */}
+
+          <Popover.Content>
+            <strong>會員中心</strong>
+          </Popover.Content>
         </Popover>
       </Overlay>
     </div>
